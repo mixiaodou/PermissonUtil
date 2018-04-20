@@ -37,6 +37,9 @@ public class PermissonUtil {
 
     public void requestPermissons(Activity activity, RequestCallback requestCallback,
                                   String... permissins) {
+        if (requestCallback == null) {
+            throw new RuntimeException("requestCallback is null!");
+        }
         String[] permArr = null;
         permArr = permissins;
         if (permArr == null || permArr.length == 0) {
@@ -74,6 +77,9 @@ public class PermissonUtil {
 
     public void requestPermissons(Fragment fragment, RequestCallback requestCallback,
                                   String... permissins) {
+        if (requestCallback == null) {
+            throw new RuntimeException("requestCallback is null!");
+        }
         String[] permArr = null;
         permArr = permissins;
         if (permArr == null) {
@@ -113,23 +119,6 @@ public class PermissonUtil {
         }
     }
 
-    public interface RequestCallback {
-        //isGranted:全部获取到权限
-        void onResult(boolean isGranted, String[] permissins);
-    }
-
-    private boolean isAllRequestGranted(int[] grantResults, String[] permissions) {
-        boolean allPermissonGrant = true;
-        for (int i = 0; i < grantResults.length; i++) {
-            if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
-                allPermissonGrant = false;
-                Log.i(TAG, "--" + permissions[i] + " 权限不同意");
-                break;
-            }
-        }
-        return allPermissonGrant;
-    }
-
 
     //获取 清单文件(AndroidManifest) 声明请求的权限
     public String[] getAllPermissons(Context context) {
@@ -148,5 +137,22 @@ public class PermissonUtil {
             e.printStackTrace();
         }
         return permissions;
+    }
+
+    private boolean isAllRequestGranted(int[] grantResults, String[] permissions) {
+        boolean allPermissonGrant = true;
+        for (int i = 0; i < grantResults.length; i++) {
+            if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                allPermissonGrant = false;
+                Log.i(TAG, "--" + permissions[i] + " 权限不同意");
+                break;
+            }
+        }
+        return allPermissonGrant;
+    }
+
+    public interface RequestCallback {
+        //isGranted:全部获取到权限
+        void onResult(boolean isAllGranted, String[] permissins);
     }
 }
