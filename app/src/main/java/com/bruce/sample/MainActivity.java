@@ -1,7 +1,9 @@
-package com.bruce.permissonutil;
+package com.bruce.sample;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.bruce.sample.R;
 
 public class MainActivity extends AppCompatActivity {
 
