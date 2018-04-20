@@ -1,4 +1,4 @@
-package com.bruce.permissonutil;
+package com.bruce.permisson;
 
 import android.app.Activity;
 import android.content.Context;
