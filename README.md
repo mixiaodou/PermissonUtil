@@ -13,7 +13,7 @@
  - 2 Add the dependency
  ````
  	dependencies {
-	        compile 'com.github.mixiaodou:PermissonUtil:v1.0'
+	        compile 'com.github.mixiaodou:PermissonUtil:v1.1'
 	}
 
  ````
