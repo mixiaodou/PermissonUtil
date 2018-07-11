@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -35,8 +36,10 @@ public class PermissonUtil {
         return permissonUtil;
     }
 
-    public void requestPermissons(Activity activity, RequestCallback requestCallback,
-                                  String... permissins) {
+    //NonNull  不可传入null
+    //Nullable 可以传入null
+    public void requestPermissons(@NonNull Activity activity, @NonNull RequestCallback requestCallback,
+                                  @Nullable String... permissins) {
         if (requestCallback == null) {
             throw new RuntimeException("requestCallback is null!");
         }
@@ -75,8 +78,8 @@ public class PermissonUtil {
 
     }
 
-    public void requestPermissons(Fragment fragment, RequestCallback requestCallback,
-                                  String... permissins) {
+    public void requestPermissons(@NonNull Fragment fragment, @NonNull RequestCallback requestCallback,
+                                  @Nullable String... permissins) {
         if (requestCallback == null) {
             throw new RuntimeException("requestCallback is null!");
         }
@@ -121,18 +124,18 @@ public class PermissonUtil {
 
 
     //获取 清单文件(AndroidManifest) 声明请求的权限
-    public String[] getAllPermissons(Context context) {
+    public String[] getAllPermissons(@NonNull Context context) {
         String[] permissions = null;
         try {
             // 参数2必须是PackageManager.GET_PERMISSIONS
             PackageInfo pi = context.getPackageManager().getPackageInfo(context.getPackageName(),
                     PackageManager.GET_PERMISSIONS);
             permissions = pi.requestedPermissions;
-            if (permissions != null) {
+            /*if (permissions != null) {
                 for (String str : permissions) {
                     Log.d(TAG, "getAllPermissons:" + str);
                 }
-            }
+            }*/
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }

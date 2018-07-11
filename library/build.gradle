@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
+//jitPack配置 1/2
 apply plugin: 'com.github.dcendents.android-maven'
+//jitPack配置 2/2
 group = 'com.github.mixiaodou'
 android {
     compileSdkVersion 25
